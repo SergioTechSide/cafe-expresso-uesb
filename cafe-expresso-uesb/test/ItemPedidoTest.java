@@ -35,46 +35,53 @@ public class ItemPedidoTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of calcularSubtotal method, of class ItemPedido.
+   /**
+     * Teste do método calcularSubtotal, da classe ItemPedido.
+     * Este teste verifica se o cálculo de preço x quantidade está correto.
      */
     @Test
     public void testCalcularSubtotal() {
-        System.out.println("calcularSubtotal");
-        ItemPedido instance = null;
-        double expResult = 0.0;
-        double result = instance.calcularSubtotal();
-        assertEquals(expResult, result, 0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("Executando: calcularSubtotal");
+        
+        // 1. Preparação (Cenário de Teste)
+        Produto cafe = new Produto("Café Expresso", 5.0);
+        ItemPedido instance = new ItemPedido(cafe, 3); // 3 cafés de 5.00
+        
+        double resultadoEsperado = 15.0; // 3 * 5 = 15
+        
+        // 2. Execução
+        double resultadoObtido = instance.calcularSubtotal();
+        
+        // 3. Verificação (V&V)
+        // O 0.01 é a margem de erro aceitável para casas decimais
+        assertEquals(resultadoEsperado, resultadoObtido, 0.01);
     }
 
     /**
-     * Test of getProduto method, of class ItemPedido.
+     * Teste do método getProduto.
+     * Verifica se o item está guardando o produto corretamente.
      */
     @Test
     public void testGetProduto() {
-        System.out.println("getProduto");
-        ItemPedido instance = null;
-        Object expResult = null;
-        Object result = instance.getProduto();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("Executando: getProduto");
+        
+        Produto cafe = new Produto("Café Expresso", 5.0);
+        ItemPedido instance = new ItemPedido(cafe, 1);
+        
+        assertEquals(cafe, instance.getProduto());
     }
 
     /**
-     * Test of getQuantidade method, of class ItemPedido.
+     * Teste do método getQuantidade.
      */
     @Test
     public void testGetQuantidade() {
-        System.out.println("getQuantidade");
-        ItemPedido instance = null;
-        int expResult = 0;
-        int result = instance.getQuantidade();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("Executando: getQuantidade");
+        
+        ItemPedido instance = new ItemPedido(new Produto("Chá", 3.0), 5);
+        
+        int resultadoEsperado = 5;
+        assertEquals(resultadoEsperado, instance.getQuantidade());
     }
-    
 }
+    
